@@ -7,17 +7,18 @@ using Teoguide.Domain.Model.Request;
 using Teoguide.Domain.Model.Response;
 using Teoguide.Domain.Repository;
 using Teoguide.Domain.Service;
+using Teoguide.Infrastructure.UnitOfWork;
 
 namespace Teoguide.Application.ServiceImpl
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper)
+        public UsuarioService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _usuarioRepository = usuarioRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 

@@ -17,6 +17,7 @@ using Teoguide.Domain.Repository;
 using Teoguide.Domain.Service;
 using Teoguide.Infrastructure.Context;
 using Teoguide.Infrastructure.RepositoryImpl;
+using Teoguide.Infrastructure.UnitOfWork;
 
 namespace Teoguide.Api
 {
@@ -35,9 +36,13 @@ namespace Teoguide.Api
             services.AddDbContext<TeoguideDbContext>(
                 opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
-
+            
             //repository
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+
+            //unitofwork
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             //service
             services.AddTransient<IUsuarioService, UsuarioService>();
