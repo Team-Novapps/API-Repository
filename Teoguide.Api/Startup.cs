@@ -40,12 +40,15 @@ namespace Teoguide.Api
             //repository
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IPlanRepository, PlanRepository>();
+            services.AddTransient<IActividadRepository, ActividadRepository>();
 
             //unitofwork
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             //service
             services.AddTransient<IUsuarioService, UsuarioService>();
+            services.AddTransient<IPlanService, PlanService>();
 
             //mapping
             var mappingConfig = new MapperConfiguration(

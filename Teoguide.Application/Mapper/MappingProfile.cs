@@ -14,6 +14,10 @@ namespace Teoguide.Application.Mapper
         {
             CreateMap<Usuario, UsuarioRes>();
             CreateMap<UsuarioReq, Usuario>();
+            CreateMap<Plan, PlanRes>();
+            CreateMap<PlanReq, Plan>();
+            CreateMap<Actividad, ActividadRes>();
+            CreateMap<ActividadReq, Actividad>();
         }
     }
 }
