@@ -8,6 +8,10 @@ namespace Teoguide.Infrastructure.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         // agregar los otros repositorios
-        IUsuarioRepository _usuarioRepository { get; }       
+        IUsuarioRepository usuarioRepository { get; }       
+        IPlanRepository planRepository { get; }
+        IActividadRepository actividadRepository { get; }
+        ICentroHistoricoRepository centroHistoricoRepository { get; }
+
     }
 }

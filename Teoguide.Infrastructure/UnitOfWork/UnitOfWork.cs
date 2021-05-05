@@ -13,12 +13,18 @@ namespace Teoguide.Infrastructure.UnitOfWork
         private readonly TeoguideDbContext _context;
         
         // agregar los otros repositories
-        public IUsuarioRepository _usuarioRepository { get; private set; }
+        public IUsuarioRepository usuarioRepository { get; private set; }
+        public IPlanRepository planRepository { get; private set; }
+        public IActividadRepository actividadRepository { get; private set; }
+        public ICentroHistoricoRepository centroHistoricoRepository { get; set; }
 
         public UnitOfWork(TeoguideDbContext context)
         {
             _context = context;
-            _usuarioRepository = new UsuarioRepository(_context);
+            usuarioRepository = new UsuarioRepository(_context);
+            planRepository = new PlanRepository(_context);
+            actividadRepository = new ActividadRepository(_context);
+            centroHistoricoRepository = new CentroHistoricoRepository(_context);
         }
 
         public void Dispose()
