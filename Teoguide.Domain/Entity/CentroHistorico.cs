@@ -10,21 +10,23 @@ namespace Teoguide.Domain.Entity
     {
         public int Id { get; set; }
 
-        // le pones si es requerido o no y su tipo de dato en sql a cada atributo
-        // por lo que si va a ser nullable no le pongas [Required]
-        //[Required]
-        //[Column(TypeName = "nvarchar(100)")]
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
         public string Nombre { get; set; }
 
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
         public string Direccion { get; set; }
 
+        [Required]
+        [Column(TypeName = "nvarchar(20)")]
         public string Latitud { get; set; }
 
+        [Required]
+        [Column(TypeName = "nvarchar(20)")]
         public string Longitud { get; set; }
 
-        public int DescripcionId { get; set; }
-
-        //public List<Descripcion> Descripciones { get; set; }
-        // lo descomentas cuando creas la entidad Descripcion, es para las relaciones       
+        public List<Multimedia> Multimedias { get; set; }
+        public List<Descripcion> Descripciones { get; set; }     
     }
 }
