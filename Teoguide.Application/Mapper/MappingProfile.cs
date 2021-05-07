@@ -18,6 +18,14 @@ namespace Teoguide.Application.Mapper
             CreateMap<PlanReq, Plan>();
             CreateMap<Actividad, ActividadRes>();
             CreateMap<ActividadReq, Actividad>();
+            CreateMap<Descripcion, DescripcionRes>();
+            CreateMap<DescripcionReq, Descripcion>();
+            CreateMap<Multimedia, MultimediaRes>();
+            CreateMap<MultimediaReq, Multimedia>();
+            CreateMap<CentroHistorico, CentroHistoricoRes>();
+            CreateMap<CentroHistoricoReq, CentroHistorico>();
+            CreateMap<Comentario, ComentarioRes>();
+            CreateMap<ComentarioReq, Comentario>();
         }
     }
 }

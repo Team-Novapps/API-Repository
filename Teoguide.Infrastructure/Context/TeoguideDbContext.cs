@@ -77,6 +77,9 @@ namespace Teoguide.Infrastructure.Context
         public DbSet<Plan> Planes { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
         public DbSet<CentroHistorico> CentroHistoricos { get; set; }
+        public DbSet<Descripcion> Descripciones { get; set; }
+        public DbSet<Multimedia> Multimedias { get; set; }
+        public DbSet<Comentario> Comentarios { get; set; }
        
     }
 }

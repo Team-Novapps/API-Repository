@@ -12,6 +12,9 @@ namespace Teoguide.Infrastructure.UnitOfWork
         IPlanRepository planRepository { get; }
         IActividadRepository actividadRepository { get; }
         ICentroHistoricoRepository centroHistoricoRepository { get; }
+        IMultimediaRespository multimediaRespository { get; }
+        IDescripcionRepository descripcionRepository { get; }
+        IComentarioRespository comentarioRespository { get; }
 
     }
 }

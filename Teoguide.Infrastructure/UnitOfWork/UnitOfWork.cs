@@ -17,6 +17,9 @@ namespace Teoguide.Infrastructure.UnitOfWork
         public IPlanRepository planRepository { get; private set; }
         public IActividadRepository actividadRepository { get; private set; }
         public ICentroHistoricoRepository centroHistoricoRepository { get; set; }
+        public IMultimediaRespository multimediaRespository { get; set; }
+        public IDescripcionRepository descripcionRepository { get; set; }
+        public IComentarioRespository comentarioRespository { get; set; }
 
         public UnitOfWork(TeoguideDbContext context)
         {
@@ -25,6 +28,9 @@ namespace Teoguide.Infrastructure.UnitOfWork
             planRepository = new PlanRepository(_context);
             actividadRepository = new ActividadRepository(_context);
             centroHistoricoRepository = new CentroHistoricoRepository(_context);
+            multimediaRespository = new MultimediaRepository(_context);
+            descripcionRepository = new DescripcionRepository(_context);
+            comentarioRespository = new ComentarioRespository(_context);
         }
 
         public void Dispose()
