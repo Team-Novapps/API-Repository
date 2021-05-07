@@ -52,11 +52,10 @@ namespace Teoguide.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(nullable: true),
-                    Direccion = table.Column<string>(nullable: true),
-                    Latitud = table.Column<string>(nullable: true),
-                    Longitud = table.Column<string>(nullable: true),
-                    DescripcionId = table.Column<int>(nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Direccion = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Latitud = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    Longitud = table.Column<string>(type: "nvarchar(20)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -202,6 +201,50 @@ namespace Teoguide.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Descripciones",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CentroHistoricoId = table.Column<int>(nullable: false),
+                    Idioma = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    Texto = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Descripciones", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Descripciones_CentroHistoricos_CentroHistoricoId",
+                        column: x => x.CentroHistoricoId,
+                        principalTable: "CentroHistoricos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Multimedias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(nullable: false),
+                    CentroHistoricoId = table.Column<int>(nullable: false),
+                    Tipo = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Verificado = table.Column<bool>(nullable: false),
+                    ContendioUrl = table.Column<string>(type: "nvarchar(300)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Multimedias", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Multimedias_CentroHistoricos_CentroHistoricoId",
+                        column: x => x.CentroHistoricoId,
+                        principalTable: "CentroHistoricos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Actividades",
                 columns: table => new
                 {
@@ -229,10 +272,31 @@ namespace Teoguide.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comentarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(nullable: false),
+                    CentroHistoricoId = table.Column<int>(nullable: false),
+                    Texto = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comentarios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comentarios_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "CentroHistoricos",
-                columns: new[] { "Id", "DescripcionId", "Direccion", "Latitud", "Longitud", "Nombre" },
-                values: new object[] { 1, 0, "Valle de Supe", "12.1238594", "-36.1598621", "Caral" });
+                columns: new[] { "Id", "Direccion", "Latitud", "Longitud", "Nombre" },
+                values: new object[] { 1, "Valle de Supe", "12.1238594", "-36.1598621", "Caral" });
 
             migrationBuilder.InsertData(
                 table: "Planes",
@@ -247,12 +311,12 @@ namespace Teoguide.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Actividades",
                 columns: new[] { "Id", "CentroHistoricoId", "Descripcion", "FechaHoraActividad", "PlanId" },
-                values: new object[] { 1, 1, "Recorrer el lugar", new DateTime(2021, 5, 5, 6, 26, 28, 804, DateTimeKind.Local).AddTicks(3765), 1 });
+                values: new object[] { 1, 1, "Recorrer el lugar", new DateTime(2021, 5, 7, 1, 16, 7, 747, DateTimeKind.Local).AddTicks(9231), 1 });
 
             migrationBuilder.InsertData(
                 table: "Actividades",
                 columns: new[] { "Id", "CentroHistoricoId", "Descripcion", "FechaHoraActividad", "PlanId" },
-                values: new object[] { 2, 1, "Comer platos tipicos", new DateTime(2021, 5, 5, 6, 26, 28, 804, DateTimeKind.Local).AddTicks(8766), 1 });
+                values: new object[] { 2, 1, "Comer platos tipicos", new DateTime(2021, 5, 7, 1, 16, 7, 748, DateTimeKind.Local).AddTicks(4232), 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Actividades_CentroHistoricoId",
@@ -302,6 +366,21 @@ namespace Teoguide.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comentarios_UsuarioId",
+                table: "Comentarios",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Descripciones_CentroHistoricoId",
+                table: "Descripciones",
+                column: "CentroHistoricoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Multimedias_CentroHistoricoId",
+                table: "Multimedias",
+                column: "CentroHistoricoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -325,10 +404,13 @@ namespace Teoguide.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Comentarios");
 
             migrationBuilder.DropTable(
-                name: "CentroHistoricos");
+                name: "Descripciones");
+
+            migrationBuilder.DropTable(
+                name: "Multimedias");
 
             migrationBuilder.DropTable(
                 name: "Planes");
@@ -338,6 +420,12 @@ namespace Teoguide.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
+                name: "CentroHistoricos");
         }
     }
 }
