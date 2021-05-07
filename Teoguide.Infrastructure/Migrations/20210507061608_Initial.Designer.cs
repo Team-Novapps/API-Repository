@@ -10,7 +10,7 @@ using Teoguide.Infrastructure.Context;
 namespace Teoguide.Infrastructure.Migrations
 {
     [DbContext(typeof(TeoguideDbContext))]
-    [Migration("20210505112629_Initial")]
+    [Migration("20210507061608_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -250,7 +250,7 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 1,
                             CentroHistoricoId = 1,
                             Descripcion = "Recorrer el lugar",
-                            FechaHoraActividad = new DateTime(2021, 5, 5, 6, 26, 28, 804, DateTimeKind.Local).AddTicks(3765),
+                            FechaHoraActividad = new DateTime(2021, 5, 7, 1, 16, 7, 747, DateTimeKind.Local).AddTicks(9231),
                             PlanId = 1
                         },
                         new
@@ -258,7 +258,7 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 2,
                             CentroHistoricoId = 1,
                             Descripcion = "Comer platos tipicos",
-                            FechaHoraActividad = new DateTime(2021, 5, 5, 6, 26, 28, 804, DateTimeKind.Local).AddTicks(8766),
+                            FechaHoraActividad = new DateTime(2021, 5, 7, 1, 16, 7, 748, DateTimeKind.Local).AddTicks(4232),
                             PlanId = 1
                         });
                 });
@@ -270,20 +270,21 @@ namespace Teoguide.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DescripcionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Direccion")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Latitud")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Longitud")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -293,12 +294,91 @@ namespace Teoguide.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DescripcionId = 0,
                             Direccion = "Valle de Supe",
                             Latitud = "12.1238594",
                             Longitud = "-36.1598621",
                             Nombre = "Caral"
                         });
+                });
+
+            modelBuilder.Entity("Teoguide.Domain.Entity.Comentario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CentroHistoricoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Texto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Comentarios");
+                });
+
+            modelBuilder.Entity("Teoguide.Domain.Entity.Descripcion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CentroHistoricoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Idioma")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Texto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CentroHistoricoId");
+
+                    b.ToTable("Descripciones");
+                });
+
+            modelBuilder.Entity("Teoguide.Domain.Entity.Multimedia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CentroHistoricoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContendioUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Verificado")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CentroHistoricoId");
+
+                    b.ToTable("Multimedias");
                 });
 
             modelBuilder.Entity("Teoguide.Domain.Entity.Plan", b =>
@@ -437,6 +517,33 @@ namespace Teoguide.Infrastructure.Migrations
                     b.HasOne("Teoguide.Domain.Entity.Plan", null)
                         .WithMany("Actividades")
                         .HasForeignKey("PlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Teoguide.Domain.Entity.Comentario", b =>
+                {
+                    b.HasOne("Teoguide.Domain.Entity.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Teoguide.Domain.Entity.Descripcion", b =>
+                {
+                    b.HasOne("Teoguide.Domain.Entity.CentroHistorico", null)
+                        .WithMany("Descripciones")
+                        .HasForeignKey("CentroHistoricoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Teoguide.Domain.Entity.Multimedia", b =>
+                {
+                    b.HasOne("Teoguide.Domain.Entity.CentroHistorico", null)
+                        .WithMany("Multimedias")
+                        .HasForeignKey("CentroHistoricoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
