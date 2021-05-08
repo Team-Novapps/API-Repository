@@ -55,7 +55,8 @@ namespace Teoguide.Infrastructure.Migrations
                     Nombre = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Direccion = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Latitud = table.Column<string>(type: "nvarchar(20)", nullable: false),
-                    Longitud = table.Column<string>(type: "nvarchar(20)", nullable: false)
+                    Longitud = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -295,8 +296,13 @@ namespace Teoguide.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "CentroHistoricos",
-                columns: new[] { "Id", "Direccion", "Latitud", "Longitud", "Nombre" },
-                values: new object[] { 1, "Valle de Supe", "12.1238594", "-36.1598621", "Caral" });
+                columns: new[] { "Id", "Direccion", "ImgUrl", "Latitud", "Longitud", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "Valle de Supe", "https://i.imgur.com/FPfbY3Y.jpg", "12.1238594", "-36.1598621", "Caral" },
+                    { 2, "Lima", "https://i.imgur.com/Ql68krK.jpg", "11.1238594", "-31.1598621", "Huaca Huallamarca" },
+                    { 3, "Lima", "https://i.imgur.com/u8IRRd1.jpg", "16.1238594", "-42.1598621", "Huaca Mateo-Salado" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Planes",
@@ -311,12 +317,21 @@ namespace Teoguide.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Actividades",
                 columns: new[] { "Id", "CentroHistoricoId", "Descripcion", "FechaHoraActividad", "PlanId" },
-                values: new object[] { 1, 1, "Recorrer el lugar", new DateTime(2021, 5, 7, 1, 16, 7, 747, DateTimeKind.Local).AddTicks(9231), 1 });
+                values: new object[,]
+                {
+                    { 1, 1, "Recorrer el lugar", new DateTime(2021, 5, 8, 11, 45, 52, 915, DateTimeKind.Local).AddTicks(1315), 1 },
+                    { 2, 1, "Comer platos tipicos", new DateTime(2021, 5, 8, 11, 45, 52, 920, DateTimeKind.Local).AddTicks(1318), 1 }
+                });
 
             migrationBuilder.InsertData(
-                table: "Actividades",
-                columns: new[] { "Id", "CentroHistoricoId", "Descripcion", "FechaHoraActividad", "PlanId" },
-                values: new object[] { 2, 1, "Comer platos tipicos", new DateTime(2021, 5, 7, 1, 16, 7, 748, DateTimeKind.Local).AddTicks(4232), 1 });
+                table: "Descripciones",
+                columns: new[] { "Id", "CentroHistoricoId", "Idioma", "Texto" },
+                values: new object[,]
+                {
+                    { 1, 1, "ESP", "La Ciudad Sagrada de Caral es un interesante sitio arqueológico ubicado en el Valle de Supe." },
+                    { 2, 2, "ESP", "Considerada como un centro ceremorial, tiene la forma de una pirámide trunca con tres plataformas superpuestas." },
+                    { 3, 3, "ESP", "El complejo arqueológico de Mateo Salado está constituido por cinco montículos piramidales." }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Actividades_CentroHistoricoId",

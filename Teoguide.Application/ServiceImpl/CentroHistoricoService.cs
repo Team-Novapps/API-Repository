@@ -23,8 +23,7 @@ namespace Teoguide.Application.ServiceImpl
         }
         public async Task<IEnumerable<CentroHistoricoRes>> GetAll()
         {
-            var centros = await _unitOfWork.centroHistoricoRepository.GetAll();
-            var centrosRes = _mapper.Map<IEnumerable<CentroHistoricoRes>>(centros);
+            var centrosRes = await _unitOfWork.centroHistoricoRepository.GetAllRes();
             return centrosRes;
         }
 

@@ -9,6 +9,8 @@ namespace Teoguide.Domain.Repository
 {
     public interface ICentroHistoricoRepository : IRepository<CentroHistorico>
     {
+        Task<IEnumerable<CentroHistoricoRes>> GetAllRes();
+
         Task<CentroHistoricoDetail> GetDetailById(int id);
 
         //Obtener los centros más cercanos a un punto

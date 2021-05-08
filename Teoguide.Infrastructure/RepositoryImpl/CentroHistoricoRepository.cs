@@ -57,5 +57,22 @@ namespace Teoguide.Infrastructure.RepositoryImpl
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<CentroHistoricoRes>> GetAllRes()
+        {
+            var centroHistoricosRes = await _context.CentroHistoricos
+                .Select(ch => new CentroHistoricoRes
+                {
+                    Id = ch.Id,
+                    Nombre = ch.Nombre,
+                    Descripcion = ch.Descripciones
+                                    .Where(d => d.Idioma == "ESP")
+                                    .Select(d => d.Texto)
+                                    .FirstOrDefault(),
+                    ImgUrl = ch.ImgUrl
+                }).ToListAsync();
+
+            return centroHistoricosRes;
+        }
     }
 }

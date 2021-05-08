@@ -10,7 +10,7 @@ using Teoguide.Infrastructure.Context;
 namespace Teoguide.Infrastructure.Migrations
 {
     [DbContext(typeof(TeoguideDbContext))]
-    [Migration("20210507061608_Initial")]
+    [Migration("20210508164553_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -250,7 +250,7 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 1,
                             CentroHistoricoId = 1,
                             Descripcion = "Recorrer el lugar",
-                            FechaHoraActividad = new DateTime(2021, 5, 7, 1, 16, 7, 747, DateTimeKind.Local).AddTicks(9231),
+                            FechaHoraActividad = new DateTime(2021, 5, 8, 11, 45, 52, 915, DateTimeKind.Local).AddTicks(1315),
                             PlanId = 1
                         },
                         new
@@ -258,7 +258,7 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 2,
                             CentroHistoricoId = 1,
                             Descripcion = "Comer platos tipicos",
-                            FechaHoraActividad = new DateTime(2021, 5, 7, 1, 16, 7, 748, DateTimeKind.Local).AddTicks(4232),
+                            FechaHoraActividad = new DateTime(2021, 5, 8, 11, 45, 52, 920, DateTimeKind.Local).AddTicks(1318),
                             PlanId = 1
                         });
                 });
@@ -273,6 +273,10 @@ namespace Teoguide.Infrastructure.Migrations
                     b.Property<string>("Direccion")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Latitud")
                         .IsRequired()
@@ -295,9 +299,28 @@ namespace Teoguide.Infrastructure.Migrations
                         {
                             Id = 1,
                             Direccion = "Valle de Supe",
+                            ImgUrl = "https://i.imgur.com/FPfbY3Y.jpg",
                             Latitud = "12.1238594",
                             Longitud = "-36.1598621",
                             Nombre = "Caral"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Direccion = "Lima",
+                            ImgUrl = "https://i.imgur.com/Ql68krK.jpg",
+                            Latitud = "11.1238594",
+                            Longitud = "-31.1598621",
+                            Nombre = "Huaca Huallamarca"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Direccion = "Lima",
+                            ImgUrl = "https://i.imgur.com/u8IRRd1.jpg",
+                            Latitud = "16.1238594",
+                            Longitud = "-42.1598621",
+                            Nombre = "Huaca Mateo-Salado"
                         });
                 });
 
@@ -348,6 +371,29 @@ namespace Teoguide.Infrastructure.Migrations
                     b.HasIndex("CentroHistoricoId");
 
                     b.ToTable("Descripciones");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CentroHistoricoId = 1,
+                            Idioma = "ESP",
+                            Texto = "La Ciudad Sagrada de Caral es un interesante sitio arqueológico ubicado en el Valle de Supe."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CentroHistoricoId = 2,
+                            Idioma = "ESP",
+                            Texto = "Considerada como un centro ceremorial, tiene la forma de una pirámide trunca con tres plataformas superpuestas."
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CentroHistoricoId = 3,
+                            Idioma = "ESP",
+                            Texto = "El complejo arqueológico de Mateo Salado está constituido por cinco montículos piramidales."
+                        });
                 });
 
             modelBuilder.Entity("Teoguide.Domain.Entity.Multimedia", b =>

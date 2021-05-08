@@ -26,6 +26,10 @@ namespace Teoguide.Domain.Entity
         [Column(TypeName = "nvarchar(20)")]
         public string Longitud { get; set; }
 
+        [Required]
+        [Column(TypeName = "nvarchar(max)")]
+        public string ImgUrl { get; set; }
+
         public List<Multimedia> Multimedias { get; set; }
         public List<Descripcion> Descripciones { get; set; }     
     }
