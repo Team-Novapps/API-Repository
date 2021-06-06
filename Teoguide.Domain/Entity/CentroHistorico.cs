@@ -19,11 +19,11 @@ namespace Teoguide.Domain.Entity
         public string Direccion { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(20)")]
+        [Column(TypeName = "nvarchar(max)")]
         public string Latitud { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(20)")]
+        [Column(TypeName = "nvarchar(max)")]
         public string Longitud { get; set; }
 
         [Required]

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Teoguide.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Second : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,8 +54,8 @@ namespace Teoguide.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Direccion = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Latitud = table.Column<string>(type: "nvarchar(20)", nullable: false),
-                    Longitud = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    Latitud = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Longitud = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -299,9 +299,9 @@ namespace Teoguide.Infrastructure.Migrations
                 columns: new[] { "Id", "Direccion", "ImgUrl", "Latitud", "Longitud", "Nombre" },
                 values: new object[,]
                 {
-                    { 1, "Valle de Supe", "https://i.imgur.com/FPfbY3Y.jpg", "12.1238594", "-36.1598621", "Caral" },
-                    { 2, "Lima", "https://i.imgur.com/Ql68krK.jpg", "11.1238594", "-31.1598621", "Huaca Huallamarca" },
-                    { 3, "Lima", "https://i.imgur.com/u8IRRd1.jpg", "16.1238594", "-42.1598621", "Huaca Mateo-Salado" }
+                    { 1, "Valle de Supe", "https://i.imgur.com/FPfbY3Y.jpg", "-10.892196046322377", "-77.52333687113237", "Caral" },
+                    { 2, "Lima", "https://i.imgur.com/Ql68krK.jpg", "-12.097147060919646", "-77.04048228878406", "Huaca Huallamarca" },
+                    { 3, "Lima", "https://i.imgur.com/u8IRRd1.jpg", "-12.067163839786117", "-77.06362247344228", "Huaca Mateo-Salado" }
                 });
 
             migrationBuilder.InsertData(
@@ -319,8 +319,8 @@ namespace Teoguide.Infrastructure.Migrations
                 columns: new[] { "Id", "CentroHistoricoId", "Descripcion", "FechaHoraActividad", "PlanId" },
                 values: new object[,]
                 {
-                    { 1, 1, "Recorrer el lugar", new DateTime(2021, 5, 8, 11, 45, 52, 915, DateTimeKind.Local).AddTicks(1315), 1 },
-                    { 2, 1, "Comer platos tipicos", new DateTime(2021, 5, 8, 11, 45, 52, 920, DateTimeKind.Local).AddTicks(1318), 1 }
+                    { 1, 1, "Recorrer el lugar", new DateTime(2021, 6, 6, 12, 24, 21, 112, DateTimeKind.Local).AddTicks(2561), 1 },
+                    { 2, 1, "Comer platos tipicos", new DateTime(2021, 6, 6, 12, 24, 21, 121, DateTimeKind.Local).AddTicks(2566), 1 }
                 });
 
             migrationBuilder.InsertData(

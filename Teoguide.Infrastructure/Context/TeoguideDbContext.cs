@@ -39,8 +39,8 @@ namespace Teoguide.Infrastructure.Context
                 Nombre = "Caral",
                 Direccion = "Valle de Supe",
                 ImgUrl = "https://i.imgur.com/FPfbY3Y.jpg",
-                Latitud = "12.1238594",
-                Longitud = "-36.1598621",
+                Latitud = "-10.892196046322377",                
+                Longitud = "-77.52333687113237",
             };
 
             var ch_huallamarca = new CentroHistorico
@@ -49,8 +49,8 @@ namespace Teoguide.Infrastructure.Context
                 Nombre = "Huaca Huallamarca",
                 Direccion = "Lima",
                 ImgUrl = "https://i.imgur.com/Ql68krK.jpg",
-                Latitud = "11.1238594",
-                Longitud = "-31.1598621",
+                Latitud = "-12.097147060919646",
+                Longitud = "-77.04048228878406",
             };
 
             var ch_mateo_salado = new CentroHistorico
@@ -59,8 +59,8 @@ namespace Teoguide.Infrastructure.Context
                 Nombre = "Huaca Mateo-Salado",
                 Direccion = "Lima",
                 ImgUrl = "https://i.imgur.com/u8IRRd1.jpg",
-                Latitud = "16.1238594",
-                Longitud = "-42.1598621",
+                Latitud = "-12.067163839786117",
+                Longitud = "-77.06362247344228",
             };
 
             var descp_caral = new Descripcion

@@ -69,7 +69,10 @@ namespace Teoguide.Infrastructure.RepositoryImpl
                                     .Where(d => d.Idioma == "ESP")
                                     .Select(d => d.Texto)
                                     .FirstOrDefault(),
-                    ImgUrl = ch.ImgUrl
+                    ImgUrl = ch.ImgUrl,
+                    Direccion = ch.Direccion,
+                    Latitud = ch.Latitud,
+                    Longitud = ch.Longitud                  
                 }).ToListAsync();
 
             return centroHistoricosRes;

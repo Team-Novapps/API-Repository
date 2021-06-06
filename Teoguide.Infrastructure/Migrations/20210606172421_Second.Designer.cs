@@ -10,8 +10,8 @@ using Teoguide.Infrastructure.Context;
 namespace Teoguide.Infrastructure.Migrations
 {
     [DbContext(typeof(TeoguideDbContext))]
-    [Migration("20210508164553_Initial")]
-    partial class Initial
+    [Migration("20210606172421_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,7 +250,7 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 1,
                             CentroHistoricoId = 1,
                             Descripcion = "Recorrer el lugar",
-                            FechaHoraActividad = new DateTime(2021, 5, 8, 11, 45, 52, 915, DateTimeKind.Local).AddTicks(1315),
+                            FechaHoraActividad = new DateTime(2021, 6, 6, 12, 24, 21, 112, DateTimeKind.Local).AddTicks(2561),
                             PlanId = 1
                         },
                         new
@@ -258,7 +258,7 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 2,
                             CentroHistoricoId = 1,
                             Descripcion = "Comer platos tipicos",
-                            FechaHoraActividad = new DateTime(2021, 5, 8, 11, 45, 52, 920, DateTimeKind.Local).AddTicks(1318),
+                            FechaHoraActividad = new DateTime(2021, 6, 6, 12, 24, 21, 121, DateTimeKind.Local).AddTicks(2566),
                             PlanId = 1
                         });
                 });
@@ -280,11 +280,11 @@ namespace Teoguide.Infrastructure.Migrations
 
                     b.Property<string>("Latitud")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Longitud")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -300,8 +300,8 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 1,
                             Direccion = "Valle de Supe",
                             ImgUrl = "https://i.imgur.com/FPfbY3Y.jpg",
-                            Latitud = "12.1238594",
-                            Longitud = "-36.1598621",
+                            Latitud = "-10.892196046322377",
+                            Longitud = "-77.52333687113237",
                             Nombre = "Caral"
                         },
                         new
@@ -309,8 +309,8 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 2,
                             Direccion = "Lima",
                             ImgUrl = "https://i.imgur.com/Ql68krK.jpg",
-                            Latitud = "11.1238594",
-                            Longitud = "-31.1598621",
+                            Latitud = "-12.097147060919646",
+                            Longitud = "-77.04048228878406",
                             Nombre = "Huaca Huallamarca"
                         },
                         new
@@ -318,8 +318,8 @@ namespace Teoguide.Infrastructure.Migrations
                             Id = 3,
                             Direccion = "Lima",
                             ImgUrl = "https://i.imgur.com/u8IRRd1.jpg",
-                            Latitud = "16.1238594",
-                            Longitud = "-42.1598621",
+                            Latitud = "-12.067163839786117",
+                            Longitud = "-77.06362247344228",
                             Nombre = "Huaca Mateo-Salado"
                         });
                 });
