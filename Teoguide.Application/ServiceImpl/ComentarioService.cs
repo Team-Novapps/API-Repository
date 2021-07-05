@@ -22,9 +22,9 @@ namespace Teoguide.Application.ServiceImpl
             _mapper = mapper;
         }
 
-        public Task<ComentarioRes> GetComentarioByCentroId(int id)
+        public async Task<IEnumerable<ComentarioRes>> GetComentariosByCentroId(int id)
         {
-            return _unitOfWork.comentarioRespository.GetComentarioByCentroId(id);
+            return await _unitOfWork.comentarioRespository.GetComentariosByCentroId(id);
         }
 
         public async Task<int> Save(ComentarioReq comentarioReq)

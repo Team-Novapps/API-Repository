@@ -10,6 +10,6 @@ namespace Teoguide.Domain.Service
     public interface IComentarioService
     {
         Task<int> Save(ComentarioReq comentarioReq);
-        Task<ComentarioRes> GetComentarioByCentroId(int id);
+        Task<IEnumerable<ComentarioRes>> GetComentariosByCentroId(int id);
     }
 }

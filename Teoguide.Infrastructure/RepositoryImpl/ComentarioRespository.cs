@@ -16,7 +16,7 @@ namespace Teoguide.Infrastructure.RepositoryImpl
         {
 
         }
-        public async Task<ComentarioRes> GetComentarioByCentroId(int id)
+        public async Task<IEnumerable<ComentarioRes>> GetComentariosByCentroId(int id)
         {
             var comentario = await _context.Comentarios
                             .Where(c => c.CentroHistoricoId == id)
@@ -31,7 +31,7 @@ namespace Teoguide.Infrastructure.RepositoryImpl
                                    ApellidoUsuario = c.Usuario.Apellidos,
                                    ImagenUrlUsuario = c.Usuario.ImagenUrl
                                })
-                            .FirstOrDefaultAsync();
+                            .ToListAsync();
             return comentario;
         }
     }

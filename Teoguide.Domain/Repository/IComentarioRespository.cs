@@ -9,6 +9,6 @@ namespace Teoguide.Domain.Repository
 {
     public interface IComentarioRespository:IRepository<Comentario>
     {
-        Task<ComentarioRes> GetComentarioByCentroId(int id);
+        Task<IEnumerable<ComentarioRes>> GetComentariosByCentroId(int id);
     }
 }
