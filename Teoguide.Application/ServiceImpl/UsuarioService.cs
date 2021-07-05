@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Teoguide.Domain.Entity;
 using Teoguide.Domain.Model.Request;
 using Teoguide.Domain.Model.Response;
 using Teoguide.Domain.Repository;
@@ -32,14 +33,18 @@ namespace Teoguide.Application.ServiceImpl
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<UsuarioRes>> GetAll()
+        public async Task<IEnumerable<UsuarioRes>> GetAll()
         {
-            throw new NotImplementedException();
+            var usuarios = await _unitOfWork.usuarioRepository.GetAll();
+            var usuariosRes = _mapper.Map<IEnumerable<UsuarioRes>>(usuarios);
+            return usuariosRes;
         }
 
-        public Task<int> Save(UsuarioReq usuarioReq)
+        public async Task<int> Save(UsuarioReq usuarioReq)
         {
-            throw new NotImplementedException();
+            var usuario = _mapper.Map<Usuario>(usuarioReq);
+            var usuarioSave = await _unitOfWork.usuarioRepository.Save(usuario);
+            return usuarioSave.Id;
         }
 
         public Task<int> Update(int id, UsuarioReq usuarioReq)
