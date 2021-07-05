@@ -11,7 +11,7 @@ namespace Teoguide.Domain.Model.Request
         [MaxLength(50, ErrorMessage = "El Nombre no puede ser mayor de 50 caracteres")]
         public string Nombres { get; set; }
 
-        [Required(ErrorMessage = "Los Apellidos no puede ser Nulo")]
+        //[Required(ErrorMessage = "Los Apellidos no puede ser Nulo")]
         [MaxLength(50, ErrorMessage = "Los Apellidos no puede ser mayor de 50 caracteres")]
         public string Apellidos { get; set; }
 
@@ -25,7 +25,7 @@ namespace Teoguide.Domain.Model.Request
 
         public string ImagenUrl { get; set; }
 
-        [Required(ErrorMessage = "El Tipo de Usuario no puede ser Nulo")]
+        //[Required(ErrorMessage = "El Tipo de Usuario no puede ser Nulo")]
         public string Tipo { get; set; }
     }
 }
