@@ -16,6 +16,35 @@ namespace Teoguide.Infrastructure.RepositoryImpl
         {
         }
 
+        public async Task<IEnumerable<PlanRes>> GetAllDetailByUserId(int usuarioId)
+        {
+            var planesDetail = await _context.Planes
+                .Where(p => p.UsuarioId == usuarioId)
+                .Select(p => new PlanRes
+                {
+                    Id = p.Id,
+                    Titulo = p.Titulo,
+                    Descripcion = p.Descripcion,
+                    FechaPlan = p.FechaPlan,
+                    Actividades = _context.Actividades
+                        .Where(act => act.PlanId == p.Id)
+                        .Select(act => new ActividadRes
+                        {
+                            Id = act.Id,
+                            PlanId = act.PlanId,
+                            CentroHistoricoId = act.CentroHistoricoId,
+                            NombreCentroHistorico = act.CentroHistorico.Nombre,
+                            Descripcion = act.Descripcion,
+                            HoraActividad = act.HoraActividad.ToString()
+                        })
+                        .ToList()
+
+                })
+                .ToListAsync();
+
+            return planesDetail;
+        }
+
         public async Task<PlanDetail> GetDetailById(int id)
         {
             var planDetail = await _context.Planes
@@ -32,7 +61,7 @@ namespace Teoguide.Infrastructure.RepositoryImpl
                                               CentroHistoricoId = act.CentroHistoricoId,
                                               NombreCentroHistorico = act.CentroHistorico.Nombre,
                                               Descripcion = act.Descripcion,
-                                              FechaHoraActividad = act.FechaHoraActividad
+                                              //FechaHoraActividad = act.FechaHoraActividad
                                           })
                                           .ToList()
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Teoguide.Infrastructure.Context;
 
 namespace Teoguide.Infrastructure.Migrations
 {
     [DbContext(typeof(TeoguideDbContext))]
-    partial class TeoguideDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210706105209_Third")]
+    partial class Third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -273,35 +275,6 @@ namespace Teoguide.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CentroHistoricos");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Direccion = "Valle de Supe",
-                            ImgUrl = "https://i.imgur.com/FPfbY3Y.jpg",
-                            Latitud = "-10.892196046322377",
-                            Longitud = "-77.52333687113237",
-                            Nombre = "Caral"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Direccion = "Lima",
-                            ImgUrl = "https://i.imgur.com/Ql68krK.jpg",
-                            Latitud = "-12.097147060919646",
-                            Longitud = "-77.04048228878406",
-                            Nombre = "Huaca Huallamarca"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Direccion = "Lima",
-                            ImgUrl = "https://i.imgur.com/u8IRRd1.jpg",
-                            Latitud = "-12.067163839786117",
-                            Longitud = "-77.06362247344228",
-                            Nombre = "Huaca Mateo-Salado"
-                        });
                 });
 
             modelBuilder.Entity("Teoguide.Domain.Entity.Comentario", b =>
@@ -351,29 +324,6 @@ namespace Teoguide.Infrastructure.Migrations
                     b.HasIndex("CentroHistoricoId");
 
                     b.ToTable("Descripciones");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CentroHistoricoId = 1,
-                            Idioma = "ESP",
-                            Texto = "La Ciudad Sagrada de Caral es un interesante sitio arqueológico ubicado en el Valle de Supe."
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CentroHistoricoId = 2,
-                            Idioma = "ESP",
-                            Texto = "Considerada como un centro ceremorial, tiene la forma de una pirámide trunca con tres plataformas superpuestas."
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CentroHistoricoId = 3,
-                            Idioma = "ESP",
-                            Texto = "El complejo arqueológico de Mateo Salado está constituido por cinco montículos piramidales."
-                        });
                 });
 
             modelBuilder.Entity("Teoguide.Domain.Entity.Multimedia", b =>

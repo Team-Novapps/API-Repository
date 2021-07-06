@@ -10,5 +10,7 @@ namespace Teoguide.Domain.Repository
     public interface IPlanRepository : IRepository<Plan>
     {
         Task<PlanDetail> GetDetailById(int id);
+
+        Task<IEnumerable<PlanRes>> GetAllDetailByUserId(int usuarioId);
     }
 }

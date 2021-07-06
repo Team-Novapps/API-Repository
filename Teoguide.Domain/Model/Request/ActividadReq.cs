@@ -10,9 +10,9 @@ namespace Teoguide.Domain.Model.Request
         [Required(ErrorMessage = "El Id del Centro Historico no puede ser Nulo")]
         public int CentroHistoricoId { get; set; }
 
-        [Required(ErrorMessage = "La Fecha de Actividad no puede ser Nulo")]
-        [DataType(DataType.DateTime)]
-        public DateTime FechaHoraActividad { get; set; }
+        //[Required(ErrorMessage = "La Fecha de Actividad no puede ser Nulo")]
+        //[DataType(DataType.Time)]
+        public string HoraActividad { get; set; }
 
         public string Descripcion { get; set; }
     }

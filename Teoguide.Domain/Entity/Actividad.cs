@@ -17,9 +17,9 @@ namespace Teoguide.Domain.Entity
         public int CentroHistoricoId { get; set; }
 
         [Required]
-        [Column(TypeName = "datetime")]
-        public DateTime FechaHoraActividad { get; set; }
-                
+        [Column(TypeName = "time(0)")]
+        public TimeSpan HoraActividad { get; set; }
+
         public string Descripcion { get; set; }
 
         public CentroHistorico CentroHistorico { get; set; }

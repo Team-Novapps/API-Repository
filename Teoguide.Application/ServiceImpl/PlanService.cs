@@ -29,6 +29,12 @@ namespace Teoguide.Application.ServiceImpl
             return planesRes;
         }
 
+        public async Task<IEnumerable<PlanRes>> GetAllByUserId(int usuarioId)
+        {
+            var planes = await _unitOfWork.planRepository.GetAllDetailByUserId(usuarioId);
+            return planes;
+        }
+
         public async Task<PlanDetail> GetDetailById(int id)
         {
             return await _unitOfWork.planRepository.GetDetailById(id);

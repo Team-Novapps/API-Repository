@@ -12,5 +12,6 @@ namespace Teoguide.Domain.Service
         Task<IEnumerable<PlanRes>> GetAll();
         Task<PlanDetail> GetDetailById(int id);
         Task<int> Save(PlanReq planReq);
+        Task<IEnumerable<PlanRes>> GetAllByUserId(int usuarioId);
     }
 }

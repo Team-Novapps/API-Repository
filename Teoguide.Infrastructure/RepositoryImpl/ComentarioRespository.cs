@@ -31,6 +31,7 @@ namespace Teoguide.Infrastructure.RepositoryImpl
                                    ApellidoUsuario = c.Usuario.Apellidos,
                                    ImagenUrlUsuario = c.Usuario.ImagenUrl
                                })
+                            .OrderByDescending(c => c.Id)
                             .ToListAsync();
             return comentario;
         }

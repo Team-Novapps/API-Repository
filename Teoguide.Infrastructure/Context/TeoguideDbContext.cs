@@ -21,7 +21,7 @@ namespace Teoguide.Infrastructure.Context
 
         private void ModelConfig(ModelBuilder builder)
         {
-            var usuario = new Usuario
+            /*var usuario = new Usuario
             {
                 Id = 1,
                 Nombres = "Natalia",
@@ -30,7 +30,7 @@ namespace Teoguide.Infrastructure.Context
                 Contrasenya = "123456",
                 ImagenUrl = "url",
                 Tipo = "TURISTA_LOCAL"                
-            };
+            };*/
 
 
             var ch_caral = new CentroHistorico
@@ -87,7 +87,7 @@ namespace Teoguide.Infrastructure.Context
                 Texto = "El complejo arqueológico de Mateo Salado está constituido por cinco montículos piramidales."
             };
 
-            var plan = new Plan
+            /*var plan = new Plan
             {
                 Id = 1,
                 Titulo = "Visita a Caral",
@@ -100,7 +100,7 @@ namespace Teoguide.Infrastructure.Context
                 PlanId = 1,
                 CentroHistoricoId = 1,
                 Descripcion = "Recorrer el lugar",
-                FechaHoraActividad = DateTime.Now,                
+                //FechaHoraActividad = DateTime.Now,                
             };
 
             var actividad_dos = new Actividad
@@ -109,14 +109,14 @@ namespace Teoguide.Infrastructure.Context
                 PlanId = 1,
                 CentroHistoricoId = 1,
                 Descripcion = "Comer platos tipicos",
-                FechaHoraActividad = DateTime.Now,
-            };
+                //FechaHoraActividad = DateTime.Now,
+            };*/
 
-            builder.Entity<Usuario>().HasData(usuario);
+            //builder.Entity<Usuario>().HasData(usuario);
             builder.Entity<CentroHistorico>().HasData(new List<CentroHistorico> { ch_caral, ch_huallamarca, ch_mateo_salado });
             builder.Entity<Descripcion>().HasData(new List<Descripcion> { descp_caral, descp_huallamarca, descp_mateo_salado });
-            builder.Entity<Plan>().HasData(plan);
-            builder.Entity<Actividad>().HasData(new List<Actividad> { actividad_uno, actividad_dos });
+            //builder.Entity<Plan>().HasData(plan);
+            //builder.Entity<Actividad>().HasData(new List<Actividad> { actividad_uno, actividad_dos });
         }
 
         public DbSet<Usuario> Usuarios { get; set; }

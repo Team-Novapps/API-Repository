@@ -26,6 +26,12 @@ namespace Teoguide.Api.Controllers
             return Ok(await _planService.GetAll());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<PlanRes>>> GetAllByUserId(int id)
+        {
+            return Ok(await _planService.GetAllByUserId(id));
+        }
+
         [HttpGet("detail/{id}")]
         public async Task<ActionResult<PlanDetail>> GetDetailById(int id)
         {

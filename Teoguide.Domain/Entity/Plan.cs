@@ -17,6 +17,14 @@ namespace Teoguide.Domain.Entity
         [Column(TypeName = "nvarchar(50)")]
         public string Titulo { get; set; }
 
+        [Required]
+        [Column(TypeName = "nvarchar(200)")]
+        public string Descripcion { get; set; }
+
+        [Required]
+        [Column(TypeName = "date")]
+        public DateTime FechaPlan { get; set; }
+
         public List<Actividad> Actividades { get; set; }
     }
 }
