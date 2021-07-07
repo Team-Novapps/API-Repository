@@ -10,8 +10,8 @@ using Teoguide.Infrastructure.Context;
 namespace Teoguide.Infrastructure.Migrations
 {
     [DbContext(typeof(TeoguideDbContext))]
-    [Migration("20210706105855_Fourth")]
-    partial class Fourth
+    [Migration("20210707052949_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -280,7 +280,7 @@ namespace Teoguide.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Direccion = "Valle de Supe",
+                            Direccion = "Acceso Caral, Caral 15161",
                             ImgUrl = "https://i.imgur.com/FPfbY3Y.jpg",
                             Latitud = "-10.892196046322377",
                             Longitud = "-77.52333687113237",
@@ -289,7 +289,7 @@ namespace Teoguide.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            Direccion = "Lima",
+                            Direccion = "Esquina con avenida El Rosario y, Av. Nicolas de Rivera 201, San Isidro",
                             ImgUrl = "https://i.imgur.com/Ql68krK.jpg",
                             Latitud = "-12.097147060919646",
                             Longitud = "-77.04048228878406",
@@ -298,7 +298,7 @@ namespace Teoguide.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Direccion = "Lima",
+                            Direccion = "Talavera, Cercado de Lima 15083",
                             ImgUrl = "https://i.imgur.com/u8IRRd1.jpg",
                             Latitud = "-12.067163839786117",
                             Longitud = "-77.06362247344228",
@@ -328,6 +328,50 @@ namespace Teoguide.Infrastructure.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Comentarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CentroHistoricoId = 1,
+                            Texto = "Luego de visitar Caral puedes darte una vuelta al valle de Supe no te arrepentirás",
+                            UsuarioId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CentroHistoricoId = 1,
+                            Texto = "Impresionante lugar, los guías turísticos fueron muy pacientes al enseñar sobre Caral",
+                            UsuarioId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CentroHistoricoId = 1,
+                            Texto = "Recomendadísimo este sitio arqueológico para visitar y aprender más de nuestro Perú",
+                            UsuarioId = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CentroHistoricoId = 1,
+                            Texto = "Algo cansado el viaje para llegar a Caral, pero las ruinas, la historia y el paisaje del valle de supe hacen que valga la pena",
+                            UsuarioId = 5
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CentroHistoricoId = 2,
+                            Texto = "Un destino turístico interesante en el mismo centro de la ciudad de Lima, genial!",
+                            UsuarioId = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CentroHistoricoId = 3,
+                            Texto = "Pense que sería solo unas pequeñas ruinas, pero me equivoqué, este lugar es impresionante!!",
+                            UsuarioId = 6
+                        });
                 });
 
             modelBuilder.Entity("Teoguide.Domain.Entity.Descripcion", b =>
@@ -468,6 +512,68 @@ namespace Teoguide.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Apellidos = "Ramirez Castro",
+                            Contrasenya = "123456",
+                            Correo = "natalia.ramirez@gmail.com",
+                            ImagenUrl = "https://i.imgur.com/Bvwppza.png",
+                            Nombres = "Natalia",
+                            Tipo = "TURISTA_LOCAL"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Apellidos = "Lovera Tarazona",
+                            Contrasenya = "123456",
+                            Correo = "vero.lovera@gmail.com",
+                            ImagenUrl = "https://i.imgur.com/K6GcFKt.png",
+                            Nombres = "Veronica",
+                            Tipo = "TURISTA_LOCAL"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Apellidos = "Salgado Perez",
+                            Contrasenya = "123456",
+                            Correo = "lody.salgado@gmail.com",
+                            ImagenUrl = "https://i.imgur.com/gtBtZhC.png",
+                            Nombres = "Melody",
+                            Tipo = "TURISTA_LOCAL"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Apellidos = "Castro Gutierrez",
+                            Contrasenya = "123456",
+                            Correo = "mateo.castro@gmail.com",
+                            ImagenUrl = "https://i.imgur.com/juP6DaG.png",
+                            Nombres = "Mateo",
+                            Tipo = "TURISTA_LOCAL"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Apellidos = "Buenaventura Puertas",
+                            Contrasenya = "123456",
+                            Correo = "albedo.puertas@gmail.com",
+                            ImagenUrl = "https://i.imgur.com/LcnD5hf.png",
+                            Nombres = "Albedo",
+                            Tipo = "TURISTA_LOCAL"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Apellidos = "Aquino Perez",
+                            Contrasenya = "123456",
+                            Correo = "Jorge.aquino@gmail.com",
+                            ImagenUrl = "https://i.imgur.com/juP6DaG.png",
+                            Nombres = "Jorge",
+                            Tipo = "TURISTA_LOCAL"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

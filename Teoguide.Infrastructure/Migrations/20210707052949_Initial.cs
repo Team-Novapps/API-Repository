@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Teoguide.Infrastructure.Migrations
 {
-    public partial class Second : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,7 +70,9 @@ namespace Teoguide.Infrastructure.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UsuarioId = table.Column<int>(nullable: false),
-                    Titulo = table.Column<string>(type: "nvarchar(50)", nullable: false)
+                    Titulo = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    FechaPlan = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -253,7 +255,7 @@ namespace Teoguide.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlanId = table.Column<int>(nullable: false),
                     CentroHistoricoId = table.Column<int>(nullable: false),
-                    FechaHoraActividad = table.Column<DateTime>(type: "datetime", nullable: false),
+                    HoraActividad = table.Column<TimeSpan>(type: "time(0)", nullable: false),
                     Descripcion = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -299,28 +301,35 @@ namespace Teoguide.Infrastructure.Migrations
                 columns: new[] { "Id", "Direccion", "ImgUrl", "Latitud", "Longitud", "Nombre" },
                 values: new object[,]
                 {
-                    { 1, "Valle de Supe", "https://i.imgur.com/FPfbY3Y.jpg", "-10.892196046322377", "-77.52333687113237", "Caral" },
-                    { 2, "Lima", "https://i.imgur.com/Ql68krK.jpg", "-12.097147060919646", "-77.04048228878406", "Huaca Huallamarca" },
-                    { 3, "Lima", "https://i.imgur.com/u8IRRd1.jpg", "-12.067163839786117", "-77.06362247344228", "Huaca Mateo-Salado" }
+                    { 1, "Acceso Caral, Caral 15161", "https://i.imgur.com/FPfbY3Y.jpg", "-10.892196046322377", "-77.52333687113237", "Caral" },
+                    { 2, "Esquina con avenida El Rosario y, Av. Nicolas de Rivera 201, San Isidro", "https://i.imgur.com/Ql68krK.jpg", "-12.097147060919646", "-77.04048228878406", "Huaca Huallamarca" },
+                    { 3, "Talavera, Cercado de Lima 15083", "https://i.imgur.com/u8IRRd1.jpg", "-12.067163839786117", "-77.06362247344228", "Huaca Mateo-Salado" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Planes",
-                columns: new[] { "Id", "Titulo", "UsuarioId" },
-                values: new object[] { 1, "Visita a Caral", 1 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contrasenya", "Correo", "ImagenUrl", "Nombres", "Tipo" },
-                values: new object[] { 1, "Ramirez Castro", "123456", "natalia.ramirez@gmail.com", "url", "Natalia", "TURISTA_LOCAL" });
-
-            migrationBuilder.InsertData(
-                table: "Actividades",
-                columns: new[] { "Id", "CentroHistoricoId", "Descripcion", "FechaHoraActividad", "PlanId" },
                 values: new object[,]
                 {
-                    { 1, 1, "Recorrer el lugar", new DateTime(2021, 6, 6, 12, 24, 21, 112, DateTimeKind.Local).AddTicks(2561), 1 },
-                    { 2, 1, "Comer platos tipicos", new DateTime(2021, 6, 6, 12, 24, 21, 121, DateTimeKind.Local).AddTicks(2566), 1 }
+                    { 1, "Ramirez Castro", "123456", "natalia.ramirez@gmail.com", "https://i.imgur.com/Bvwppza.png", "Natalia", "TURISTA_LOCAL" },
+                    { 2, "Lovera Tarazona", "123456", "vero.lovera@gmail.com", "https://i.imgur.com/K6GcFKt.png", "Veronica", "TURISTA_LOCAL" },
+                    { 3, "Salgado Perez", "123456", "lody.salgado@gmail.com", "https://i.imgur.com/gtBtZhC.png", "Melody", "TURISTA_LOCAL" },
+                    { 4, "Castro Gutierrez", "123456", "mateo.castro@gmail.com", "https://i.imgur.com/juP6DaG.png", "Mateo", "TURISTA_LOCAL" },
+                    { 5, "Buenaventura Puertas", "123456", "albedo.puertas@gmail.com", "https://i.imgur.com/LcnD5hf.png", "Albedo", "TURISTA_LOCAL" },
+                    { 6, "Aquino Perez", "123456", "Jorge.aquino@gmail.com", "https://i.imgur.com/juP6DaG.png", "Jorge", "TURISTA_LOCAL" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Comentarios",
+                columns: new[] { "Id", "CentroHistoricoId", "Texto", "UsuarioId" },
+                values: new object[,]
+                {
+                    { 1, 1, "Luego de visitar Caral puedes darte una vuelta al valle de Supe no te arrepentirás", 1 },
+                    { 2, 1, "Impresionante lugar, los guías turísticos fueron muy pacientes al enseñar sobre Caral", 2 },
+                    { 5, 2, "Un destino turístico interesante en el mismo centro de la ciudad de Lima, genial!", 3 },
+                    { 3, 1, "Recomendadísimo este sitio arqueológico para visitar y aprender más de nuestro Perú", 4 },
+                    { 4, 1, "Algo cansado el viaje para llegar a Caral, pero las ruinas, la historia y el paisaje del valle de supe hacen que valga la pena", 5 },
+                    { 6, 3, "Pense que sería solo unas pequeñas ruinas, pero me equivoqué, este lugar es impresionante!!", 6 }
                 });
 
             migrationBuilder.InsertData(
