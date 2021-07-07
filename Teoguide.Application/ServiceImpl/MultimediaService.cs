@@ -29,6 +29,13 @@ namespace Teoguide.Application.ServiceImpl
             return multimediasRes;
         }
 
+        public async Task<IEnumerable<MultimediaRes>> GetImagesByCentroId(int centroId)
+        {
+            var multimedias = await _unitOfWork.multimediaRespository.Get(filter: x => x.CentroHistoricoId == centroId && x.Tipo == "IMAGEN");
+            var multimediasRes = _mapper.Map<IEnumerable<MultimediaRes>>(multimedias);
+            return multimediasRes;
+        }
+
         public async Task<int> Save(MultimediaReq multimediaReq)
         {
             var multimedia = _mapper.Map<Multimedia>(multimediaReq);

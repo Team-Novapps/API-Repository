@@ -45,6 +45,7 @@ namespace Teoguide.Api
             services.AddTransient<IActividadRepository, ActividadRepository>();
             services.AddTransient<ICentroHistoricoRepository, CentroHistoricoRepository>();
             services.AddTransient<IComentarioRespository, ComentarioRespository>();
+            services.AddTransient<IMultimediaRespository, MultimediaRepository>();
 
             //unitofwork
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -54,6 +55,7 @@ namespace Teoguide.Api
             services.AddTransient<IPlanService, PlanService>();
             services.AddTransient<ICentroHistoricoService, CentroHistoricoService>();
             services.AddTransient<IComentarioService, ComentarioService>();
+            services.AddTransient<IMultimediaService, MultimediaService>();
 
             //mapping
             var mappingConfig = new MapperConfiguration(

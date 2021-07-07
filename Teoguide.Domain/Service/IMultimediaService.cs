@@ -11,5 +11,6 @@ namespace Teoguide.Domain.Service
     {
         Task<IEnumerable<MultimediaRes>> GetAll();
         Task<int> Save(MultimediaReq multimediaReq);
+        Task<IEnumerable<MultimediaRes>> GetImagesByCentroId(int centroId);
     }
 }
